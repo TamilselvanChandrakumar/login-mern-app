@@ -1,6 +1,6 @@
 // controller for register
-
-exports.register = (req, res) => {
+const bcrypt = require("bcrypt");
+exports.register = async (req, res) => {
   try {
     if (!req.body) {
       res.status(406).json({ err: "You have to fill the registeration form" });
@@ -18,6 +18,8 @@ exports.register = (req, res) => {
     if (password !== checkpassword) {
       res.status(406).json({ err: "password must be same for verification" });
     }
+    const hash = await bcrypt.hashSync(password, 10);
+    res.json({ username, email, hash, checkpassword });
   } catch (error) {
     res.status(500).json({ err: error.message || "Error While Registeration" });
   }
@@ -27,13 +29,22 @@ exports.register = (req, res) => {
 exports.login = (req, res) => {
   try {
     if (!req.body) {
-      return res.status(406).json({ err: "not all fields are entered" });
+      res.status(406).json({ err: "not all fields are entered" });
+      return;
     }
     const { email, password } = req.body;
+
     if (!email || !password) {
       return res.status(406).json({ err: "fill all the fields" });
     }
-    res.json({ email, message });
+
+    // compare the hash value
+
+    const user = "$2b$10$USgrGlm/GAezc138MQVQ7OfssStjyr/Bfi.L1HWznfv/eKpvzWKcG";
+
+    const isMatch = bcrypt.compare(password, user);
+
+    res.json({ email, isMatch });
   } catch (error) {
     res.status(500).json({ err: error.message || "error while login" });
   }
