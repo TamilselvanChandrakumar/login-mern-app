@@ -1,5 +1,8 @@
 import React from "react";
 import "./LoginForm.css";
+import { FaEnvelope } from "react-icons/fa6";
+import { FaLock } from "react-icons/fa6";
+
 const LoginForm = () => {
   return (
     <>
@@ -9,19 +12,25 @@ const LoginForm = () => {
             <h1>Sign into your account</h1>
           </div>
           <form method="POST">
-            <div>
+            <div className="form-input">
               <input
                 type="email"
                 id="email"
                 placeholder="enter your mail"
               ></input>
+              <div>
+                <FaEnvelope className="mail-icon"></FaEnvelope>
+              </div>
             </div>
-            <div>
+            <div className="form-input">
               <input
                 type="password"
                 id="password"
                 placeholder="enter your passord"
               ></input>
+              <div>
+                <FaLock></FaLock>
+              </div>
             </div>
             <button>submit</button>
           </form>
