@@ -21,8 +21,19 @@
   gap: 1rem;
 }
 .baselogin-btn button {
+}
+.btn-style {
+  border: 10px;
   padding: 0.5rem;
   border-radius: 5px;
   background-color: antiquewhite;
+  border: none;
+}
+.active-btn {
+  border: 10px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: tomato;
+  color: black;
   border: none;
 }

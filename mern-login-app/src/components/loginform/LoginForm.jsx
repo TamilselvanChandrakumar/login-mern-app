@@ -3,7 +3,9 @@ import "./LoginForm.css";
 import { FaEnvelope } from "react-icons/fa6";
 import { FaLock } from "react-icons/fa6";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  let { setEmail, setPassword, handleSubmit } = props.loginState;
+
   return (
     <>
       <section className="login-section">
@@ -11,12 +13,13 @@ const LoginForm = () => {
           <div className="login-title">
             <h1>Sign into your account</h1>
           </div>
-          <form method="POST">
+          <form method="POST" onSubmit={handleSubmit}>
             <div className="form-input">
               <input
                 type="email"
                 id="email"
                 placeholder="enter your mail"
+                onChange={(e) => setEmail(e.target.value)}
               ></input>
               <div>
                 <FaEnvelope className="mail-icon"></FaEnvelope>
@@ -27,12 +30,13 @@ const LoginForm = () => {
                 type="password"
                 id="password"
                 placeholder="enter your passord"
+                onChange={(e) => setPassword(e.target.value)}
               ></input>
               <div>
                 <FaLock></FaLock>
               </div>
             </div>
-            <button>submit</button>
+            <button type="submit">submit</button>
           </form>
         </div>
       </section>
