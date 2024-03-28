@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import BaseLogin from "../baselogin/BaseLogin";
 import RegisterForm from "../registerform/RegisterForm";
+import { useDispatch } from "react-redux";
+import { postRegister } from "../../slices/loginslice";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
-
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -17,6 +19,7 @@ const Register = () => {
       password,
       checkPassword,
     };
+    dispatch(postRegister(newUser));
     console.log(newUser);
   };
   let registerData = {
